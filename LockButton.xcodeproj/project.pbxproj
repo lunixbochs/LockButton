@@ -17,7 +17,22 @@
 		BD6A48142010270000A1A53D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6A48122010270000A1A53D /* MainMenu.xib */; };
 		BD6A48172010270000A1A53D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BD6A48162010270000A1A53D /* main.m */; };
 		BD6A481D2010277D00A1A53D /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD6A481C2010277D00A1A53D /* ServiceManagement.framework */; };
+		BD6A481E20102BE600A1A53D /* LockLauncher.app in Resources */ = {isa = PBXBuildFile; fileRef = BD6A480B2010270000A1A53D /* LockLauncher.app */; };
+		BD6A482120102C0E00A1A53D /* LockLauncher.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD6A480B2010270000A1A53D /* LockLauncher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BD6A481F20102BFE00A1A53D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				BD6A482120102C0E00A1A53D /* LockLauncher.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BD6A47D92010192D00A1A53D /* LockButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +141,7 @@
 				BD6A47D52010192D00A1A53D /* Sources */,
 				BD6A47D62010192D00A1A53D /* Frameworks */,
 				BD6A47D72010192D00A1A53D /* Resources */,
+				BD6A481F20102BFE00A1A53D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -202,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD6A47E02010192D00A1A53D /* Assets.xcassets in Resources */,
+				BD6A481E20102BE600A1A53D /* LockLauncher.app in Resources */,
 				BD6A47E32010192D00A1A53D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
