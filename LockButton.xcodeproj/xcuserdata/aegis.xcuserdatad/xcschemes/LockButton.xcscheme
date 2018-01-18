@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0920"
+   version = "1.7">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BD6A47D82010192D00A1A53D"
+               BuildableName = "LockButton.app"
+               BlueprintName = "LockButton"
+               ReferencedContainer = "container:LockButton.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BD6A47D82010192D00A1A53D"
+            BuildableName = "LockButton.app"
+            BlueprintName = "LockButton"
+            ReferencedContainer = "container:LockButton.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BD6A47D82010192D00A1A53D"
+            BuildableName = "LockButton.app"
+            BlueprintName = "LockButton"
+            ReferencedContainer = "container:LockButton.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BD6A47D82010192D00A1A53D"
+            BuildableName = "LockButton.app"
+            BlueprintName = "LockButton"
+            ReferencedContainer = "container:LockButton.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# package and emit release&#10;mkdir -p &quot;$PROJECT_DIR/Release&quot;&#10;log=&quot;$PROJECT_DIR/Release/build.log&quot;&#10;rm -f &quot;$log&quot;&#10;exec &gt; &quot;$log&quot; 2&gt;&amp;1&#10;&#10;[ &quot;$ACTION&quot; = &quot;install&quot; ] || exit 0&#10;[ &quot;$BUILD_VARIANTS&quot; = &quot;normal&quot; ] || exit 0&#10;[ &quot;$CONFIGURATION&quot; = &quot;Release&quot; ] || exit 0&#10;&#10;app=&quot;$ARCHIVE_PRODUCTS_PATH/Applications/$PROJECT_NAME.app&quot;&#10;if [ ! -e &quot;${PROJECT_DIR}/${INFOPLIST_FILE}&quot; ] || [ ! -e &quot;$app&quot; ]; then&#10;echo &quot;App bundle not found.&quot;&#10;exit 1&#10;fi&#10;&#10;SHORT_VERSION=$(plutil -extract CFBundleShortVersionString xml1 &quot;${PROJECT_DIR}/${INFOPLIST_FILE}&quot; -o - | plutil -p - | tr -d &apos;&quot;&apos;)&#10;BUILD=$(plutil -extract CFBundleVersion xml1 &quot;${PROJECT_DIR}/${INFOPLIST_FILE}&quot; -o - | plutil -p - | tr -d &apos;&quot;&apos;)&#10;VERSION=&quot;$BUILD-$SHORT_VERSION&quot;&#10;osascript -e &quot;display notification \&quot;Starting Archive\&quot; with title \&quot;$PROJECT_NAME v$VERSION\&quot;&quot;&#10;&#10;base=&quot;$PROJECT_DIR/Release/$PROJECT_NAME-$VERSION&quot;&#10;rm -rf &quot;$base&quot;&#10;mkdir -p &quot;$base&quot;&#10;ln &quot;$log&quot; &quot;$base/build.log&quot;&#10;&#10;archive() {&#10;    cp -R &quot;$app&quot; &quot;$base/&quot;&#10;&#10;    dir=&quot;$TEMP_FILES_DIR/disk&quot;&#10;    dmg=&quot;$base/$PROJECT_NAME.dmg&quot;&#10;&#10;    rm -rf &quot;$dir&quot;&#10;    mkdir &quot;$dir&quot;&#10;    cp -R &quot;$app&quot; &quot;$dir/&quot;&#10;    ln -s &quot;/Applications&quot; &quot;$dir/Applications&quot;&#10;    rm -f &quot;$dmg&quot;&#10;    hdiutil create -format ULFO -fs &apos;HFS+&apos; -srcfolder &quot;$dir&quot; -volname &quot;$PROJECT_NAME&quot; &quot;$dmg&quot;&#10;    codesign -s &quot;$CODE_SIGN_IDENTITY&quot; -v &quot;$dmg&quot;&#10;    rm -rf &quot;$dir&quot;&#10;    open -g -R &quot;$base&quot;&#10;}&#10;&#10;archive || open &quot;$base/build.log&quot;&#10;osascript -e &quot;display notification \&quot;Archive Finished\&quot; with title \&quot;$PROJECT_NAME v$VERSION\&quot;&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "BD6A47D82010192D00A1A53D"
+                     BuildableName = "LockButton.app"
+                     BlueprintName = "LockButton"
+                     ReferencedContainer = "container:LockButton.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
+   </ArchiveAction>
+</Scheme>
