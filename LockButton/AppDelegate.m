@@ -29,13 +29,14 @@ extern void SACLockScreenImmediate(void);
     id button = self.statusItem.button;
     [button setTarget:self];
     [button setAction:@selector(lockScreen:)];
+    [self enableStartOnLogin];
 }
 
 - (void)lockScreen:(NSNotification *)_ {
     SACLockScreenImmediate();
 }
 
-- (void)toggleStartOnLogin:(NSMenuItem *)item {
+- (void)enableStartOnLogin {
     NSString *bundle = @"info.bochs.LockLauncher";
     NSURL *launcherPath = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/LockLauncher.app"];
     if ((LSRegisterURL((__bridge CFURLRef)launcherPath, true) == noErr) &&
